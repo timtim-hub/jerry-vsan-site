@@ -1,14 +1,12 @@
 {
-  "name": "daphni-georgolidis-site",
+  "name": "jerry-vsan-site",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:with-instagram": "npm run fetch:instagram && next build",
     "start": "next start",
-    "lint": "next lint",
-    "fetch:instagram": "node scripts/fetch-instagram.mjs"
+    "lint": "next lint"
   },
   "dependencies": {
     "framer-motion": "^11.11.9",
