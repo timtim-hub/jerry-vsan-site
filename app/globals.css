@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0f0f12;
+  color: #d9d9d9;
+  text-rendering: geometricPrecision;
+}
+
+.section-shell {
+  @apply mx-auto w-full max-w-7xl px-5 py-14 md:px-8 md:py-20;
+}
+
+.section-card {
+  @apply rounded-[2rem] border border-chrome/20 bg-charcoal/80 p-7 md:p-10;
+}
+
+.section-heading {
+  @apply font-display text-5xl uppercase leading-none tracking-[0.08em] text-chrome md:text-7xl;
+}
+
+.hero-type {
+  font-family: "Arial Black", "Impact", "Haettenschweiler", "Arial Narrow", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #d9d9d9;
+  text-shadow: 0 0 22px rgba(15, 15, 18, 0.85);
+}
+
+.hero-ghost {
+  position: absolute;
+  left: 0.02em;
+  top: 0.05em;
+  z-index: -1;
+  font-family: "Arial Black", "Impact", "Haettenschweiler", "Arial Narrow", sans-serif;
+  font-size: clamp(5rem, 22vw, 22rem);
+  line-height: 0.82;
+  letter-spacing: 0.09em;
+  color: rgba(255, 46, 46, 0.22);
+  mix-blend-mode: screen;
+  filter: blur(0.6px);
+}
+
+.cta-primary,
+.cta-secondary,
+.cta-ghost {
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.19em] transition duration-300;
+}
+
+.cta-primary {
+  @apply border border-electric bg-electric/95 text-charcoal hover:-translate-y-0.5 hover:scale-[1.01];
+}
+
+.cta-secondary {
+  @apply border border-chrome/40 bg-black/30 text-chrome hover:-translate-y-0.5 hover:border-electric hover:text-electric;
+}
+
+.cta-ghost {
+  @apply border border-chrome/30 text-chrome/90 hover:-translate-y-0.5 hover:border-chrome hover:bg-black/30;
+}
+
+.timeline-wrap {
+  @apply flex gap-4 overflow-x-auto rounded-3xl border border-chrome/20 bg-black/30 p-4 md:gap-6 md:p-6;
+  scroll-snap-type: x mandatory;
+}
+
+.timeline-card {
+  @apply min-w-[17rem] snap-start rounded-2xl border border-chrome/20 bg-charcoal/80 p-5 md:min-w-[21rem];
+}
+
+.sold-out {
+  @apply rounded-full border border-electric/60 bg-electric/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.17em] text-electric;
+  box-shadow: 0 0 16px rgba(255, 46, 46, 0.25);
+}
+
+.micro-link {
+  @apply text-chrome transition duration-200 hover:text-electric;
+}
+
+.micro-link:hover {
+  text-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

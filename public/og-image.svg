@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Jerry Vsan - Comedian Köln</title>
+  <desc id="desc">Animated comedy showcase identity card.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0F0F12" />
+      <stop offset="1" stop-color="#1B1B21" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="160" cy="110" r="120" fill="#00F0FF" opacity="0.15" />
+  <circle cx="1040" cy="520" r="170" fill="#B4FF00" opacity="0.13" />
+  <text x="90" y="255" fill="#FF2E2E" font-size="132" font-family="Arial Black, Impact, sans-serif" letter-spacing="12">JERRY VSAN</text>
+  <text x="96" y="340" fill="#D9D9D9" font-size="36" font-family="Arial, sans-serif" letter-spacing="5">COMEDIAN KÖLN • TRY OUT TOUR 2026</text>
+</svg>
