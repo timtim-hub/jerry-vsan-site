@@ -8,7 +8,7 @@ const copy = copyByLocale.de;
 export const metadata: Metadata = {
   title: copy.title,
   description: copy.description,
-  keywords: ["Comedian Köln", "Jerry Vsan", "Stand-up Köln", "Try Out Tour 2026"],
+  keywords: ["Comedian aus Köln", "Jerry Vsan", "Stand-up aus Köln", "Try Out Tour 2026"],
   alternates: {
     canonical: "/",
     languages: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: copy.description,
     url: siteBaseUrl,
     locale: "de_DE",
-    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Jerry Vsan - Comedian Köln" }]
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Jerry Vsan - Comedian aus Köln" }]
   },
   twitter: {
     card: "summary_large_image",

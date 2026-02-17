@@ -8,7 +8,7 @@ const copy = copyByLocale.en;
 export const metadata: Metadata = {
   title: copy.title,
   description: copy.description,
-  keywords: ["Comedian Köln", "Jerry Vsan", "Comedy Cologne", "Try Out Tour 2026"],
+  keywords: ["Comedian aus Köln", "Jerry Vsan", "Comedian from Cologne", "Try Out Tour 2026"],
   alternates: {
     canonical: "/en",
     languages: {

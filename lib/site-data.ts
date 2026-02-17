@@ -10,15 +10,33 @@ export type TourDate = {
   soldOut: boolean;
 };
 
-export const siteBaseUrl = "https://jerryvsan-showcase.vercel.app";
+export type SocialLink = {
+  label: string;
+  url: string;
+  logoUrl: string;
+  background: string;
+  accent: string;
+  description: { de: string; en: string };
+};
+
+export const siteBaseUrl = "https://jerry-vsan-site.netlify.app";
 
 export const legalAddress = {
-  company: "House of Hoff - Jerry Vsan Entertainment",
-  type: "Einzelunternehmen",
-  street: "Colmantstr. 22",
-  zipCity: "53115 Bonn",
-  email: "haha@hahacomedy.de",
-  phone: "0177 / 8354707"
+  name: "Jeremi Winter",
+  careOf: "c/o Impressumservice Dein-Impressum",
+  street: "Stettiner Straße 41",
+  zipCity: "35410 Hungen",
+  packageNote: "Bitte versenden Sie keine Pakete an dieser Adresse.",
+  email: "mail@jerryvsan.com",
+  phone: "vorhanden"
+};
+
+export const managementContact = {
+  name: "Leo Kleber",
+  role: "Management & Booking",
+  email: "mail@jerryvsan.com",
+  responseTime: "~ 24h",
+  baseCity: "Köln"
 };
 
 export const tourDates: TourDate[] = [
@@ -132,11 +150,12 @@ export type SiteCopy = {
     kicker: string;
     headline: string;
     subline: string;
-    ctas: { tickets: string; tour: string; watch: string };
+    ctas: { tickets: string; tour: string; watch: string; joke: string };
   };
   about: {
     title: string;
-    text: string;
+    paragraphs: string[];
+    note: string;
   };
   tour: {
     title: string;
@@ -156,27 +175,29 @@ export type SiteCopy = {
   press: {
     title: string;
     subtitle: string;
-    quotes: { source: string; text: string }[];
+    quotes: { source: string; text: string; sourceUrl?: string }[];
   };
   contact: {
     title: string;
     text: string;
     cta: string;
+    quickFacts: string[];
   };
   legal: {
     title: string;
     footerLabel: string;
   };
   marquee: string[];
+  quoteTape: string[];
 };
 
 export const copyByLocale: Record<Locale, SiteCopy> = {
   de: {
     lang: "de",
-    title: "Jerry Vsan | Comedian Köln – Try Out Tour 2026",
+    title: "Jerry Vsan | Comedian aus Köln – Try Out Tour 2026",
     description:
-      "Jerry Vsan ist Comedian aus Köln mit ausverkaufter Try Out Tour 2026. Termine, Presse, Media und Booking auf einen Blick.",
-    keyword: "Comedian Köln",
+      "Jerry Vsan ist Comedian aus Köln. Hier findest du Tourtermine, Presse-Infos, Videos und Kontakt für Booking & Medien.",
+    keyword: "Comedian aus Köln",
     nav: {
       about: "Bio",
       tour: "Tour 2026",
@@ -187,180 +208,269 @@ export const copyByLocale: Record<Locale, SiteCopy> = {
       langSwitch: "EN"
     },
     hero: {
-      kicker: "Comedian Köln",
+      kicker: "Comedian aus Köln",
       headline: "JERRY VSAN",
       subline:
-        "Newcomer des Jahres mit Kölner Kante: Straße im Kopf, High-End-Show auf der Bühne.",
-      ctas: { tickets: "Tickets", tour: "Tour ansehen", watch: "Watch" }
+        "Vom Bordstein direkt auf die Bühnenkante: Street-Stories, silly Selbstironie und Show-Qualität auf Anschlag.",
+      ctas: {
+        tickets: "Tickets",
+        tour: "Tour ansehen",
+        watch: "Watch",
+        joke: "Kostenlose Tickets*"
+      }
     },
     about: {
-      title: "Sound der Straße. Timing aus einer anderen Liga.",
-      text:
-        "Jerry Vsan kommt aus Köln, schreibt wie ein Rapper und spielt Stand-up wie ein Headliner, der seit zehn Jahren ausverkauft. Nach dem Shift von Musik zu Comedy ist aus Underground-Energie in Rekordzeit ein Bühnenprojekt mit maximalem Druck geworden: schnell, ehrlich, selbstironisch und ohne Filter für peinliche Wahrheiten."
+      title: "Der Newcomer-Vibe mit echtem Live-Handwerk.",
+      paragraphs: [
+        "Jerry startete 2019 in der Kölner Hip-Hop-Szene. Mit dem Move Richtung Stand-up hat er seine Sprache behalten, aber das Timing geschärft.",
+        "Seit Ende 2024 hat sich die Dynamik massiv beschleunigt: Sieg bei Rebell's Most Wanted, Headliner-Slots bei NightWash und Auftritte im 1LIVE-Umfeld.",
+        "Die Try Out Tour 2026 war früh komplett ausverkauft. Auf der Bühne trifft rohe Alltagserfahrung auf präzise gesetzte Punchlines."
+      ],
+      note: "Pressetext frei redaktionell nutzbar, gekürzt oder angepasst."
     },
     tour: {
       title: "Try Out Tour 2026",
-      subtitle: "10 Shows, 5 Städte, hoher Puls.",
-      soldOut: "Sold Out",
-      cityIntro: "Offizielle Booking-Spots pro Stadt"
+      subtitle: "10 Shows. 5 Städte. Alles dicht.",
+      soldOut: "Ausverkauft",
+      cityIntro: "Offizielle Ticket-Hosts pro Stadt"
     },
     features: {
       title: "Features & Lineups",
       intro:
-        "Faktische Stationen aus dem aktuellen Umfeld: von TV-nahen Lineups bis zu Branchenformaten.",
+        "Umschrieben aus veröffentlichten Infos von Website, Pressekit und Tourumfeld.",
       items: [
-        "Sieger bei Rebell's Most Wanted 2025.",
-        "Headliner-Slots bei NightWash in 2025/2026-Programmen.",
-        "Gast bei der 1LIVE Comedy-Nacht XXL laut Pressekit.",
-        "Podcast-Auftritt bei RebellComedy mit Jerry-Fokusfolge.",
-        "Interview- und Presseanfragen laufen aktiv über das veröffentlichte Pressekit."
+        "Gewinner bei Rebell's Most Wanted inklusive Preisgeld und Branchen-Spotlight.",
+        "Regelmäßige Headliner-Slots in NightWash-Programmen.",
+        "Gast-Auftritte im Umfeld der 1LIVE Comedy-Nacht XXL.",
+        "Aktive Presse- und Medienarbeit über das veröffentlichte Kit.",
+        "Klares Profil: Straßenbeobachtung, Figurenbau und hohes Reaktions-Tempo mit Publikum."
       ]
     },
     media: {
       title: "Media",
       subtitle:
-        "Starker Clip aus dem Jerry-Kosmos plus alle wichtigen Plattformen in einer animierten Matrix."
+        "Hero-Foto, starke Live-Ausschnitte, Pressebilder und alle relevanten Plattformen in einer Bühne."
     },
     press: {
-      title: "Press & Stimmen",
+      title: "Was die Szene sagt",
       subtitle:
-        "Paraphrasierte Branchenstimmen, inspiriert von veröffentlichten Aussagen aus Pressekit und Tourumfeld.",
+        "Kurzparaphrasen auf Basis veröffentlichter Aussagen, nicht 1:1 übernommen.",
       quotes: [
         {
           source: "Felix Lobrecht",
-          text: "Für ihn ist Jerry einer der stabilsten neuen Namen: roh, aber handwerklich auf den Punkt."
-        },
-        {
-          source: "Rebell Comedy",
-          text: "Die Crew verortet ihn als Zukunftssignal für Stand-up mit Straße, Charakter und klarer Haltung."
+          text: "Er beschreibt Jerry als sehr rohe, aber handwerklich sauber gebaute Live-Energie.",
+          sourceUrl: "https://www.youtube.com/watch?v=FJfXOGDikiM"
         },
         {
           source: "Filiz Tasdan",
-          text: "Sie hebt hervor, dass sein Timing wie angeboren wirkt und sofort Wiedererkennungswert schafft."
+          text: "Sie betont den klaren Charakter und die Runde im Set, die sofort hängen bleibt.",
+          sourceUrl: "https://www.youtube.com/watch?v=FJfXOGDikiM"
+        },
+        {
+          source: "RebellComedy / Usus",
+          text: "Das Feedback aus der Crew: unverwechselbare Figur, kantiger Inhalt, trotzdem charmant geführt.",
+          sourceUrl: "https://www.youtube.com/watch?v=FEXYFjD0ruc"
         }
       ]
     },
     contact: {
-      title: "Booking",
-      text: "Anfragen für Shows, Brand-Kollabos und Presse direkt per Mail.",
-      cta: "Jetzt buchen"
+      title: "Kontakt & Booking",
+      text: "Anfragen von Veranstalter:innen, Redaktionen und Partner:innen direkt per Mail an das Management.",
+      cta: "E-Mail schreiben",
+      quickFacts: ["Antwortzeit: ~ 24h", "Base: Köln", "Ansprechpartner: Leo Kleber"]
     },
     legal: {
       title: "Impressum",
       footerLabel: "Impressum"
     },
     marquee: [
-      "COMEDIAN KÖLN",
+      "COMEDIAN AUS KÖLN",
       "TRY OUT TOUR 2026",
-      "SOLD OUT ENERGY",
-      "RAW STORIES",
-      "HIGH-END COMEDY SHOW"
+      "KOMPLETT AUSVERKAUFT",
+      "STREET STORIES",
+      "LIVE TIMING"
+    ],
+    quoteTape: [
+      "Einer der stabilsten Newcomer gerade.",
+      "Die Zukunft der deutschen Stand-up Szene.",
+      "Timing, das man nicht lernen kann.",
+      "Vom Bordstein zur Bühnenkante."
     ]
   },
   en: {
     lang: "en",
-    title: "Jerry Vsan | Comedian Cologne – Try Out Tour 2026",
+    title: "Jerry Vsan | Comedian from Cologne – Try Out Tour 2026",
     description:
-      "Jerry Vsan is a Cologne-based comedian with a sold-out Try Out Tour 2026. Dates, press, media and booking in one place.",
-    keyword: "Comedian Köln",
+      "Jerry Vsan is a comedian from Cologne. Tour dates, press material, videos, and booking contact in one place.",
+    keyword: "Comedian aus Köln",
     nav: {
       about: "About",
       tour: "Tour 2026",
       features: "Lineups",
       media: "Media",
-      press: "Press",
+      press: "Quotes",
       contact: "Contact",
       langSwitch: "DE"
     },
     hero: {
-      kicker: "Comedian Köln",
+      kicker: "Comedian from Cologne",
       headline: "JERRY VSAN",
       subline:
-        "Newcomer of the year energy with Cologne attitude: street-rooted voice, high-production comedy delivery.",
-      ctas: { tickets: "Tickets", tour: "View Tour", watch: "Watch" }
+        "From curbside stories to center stage: raw street detail, silly self-irony, and high-production delivery.",
+      ctas: {
+        tickets: "Tickets",
+        tour: "View Tour",
+        watch: "Watch",
+        joke: "Free Tickets*"
+      }
     },
     about: {
-      title: "Street voltage. Surgical timing.",
-      text:
-        "Jerry Vsan is based in Cologne and writes with a rapper's instinct while performing stand-up like a polished arena act. Since shifting from music into comedy, he has built a fast-rising live identity: sharp, self-aware and unapologetically direct, with crowd control that feels chaotic and premium at the same time."
+      title: "Newcomer momentum, built on real stage craft.",
+      paragraphs: [
+        "Jerry started in Cologne's hip-hop scene around 2019. The move into stand-up kept the writing edge and sharpened the timing.",
+        "Since late 2024, momentum accelerated fast: winning Rebell's Most Wanted, landing NightWash headliner slots, and entering the 1LIVE comedy context.",
+        "The entire Try Out Tour 2026 sold out early. On stage, hard everyday observations meet highly controlled punchline rhythm."
+      ],
+      note: "Press text may be used editorially in shortened or adapted form."
     },
     tour: {
       title: "Try Out Tour 2026",
-      subtitle: "10 shows, 5 cities, zero chill.",
+      subtitle: "10 shows. 5 cities. Fully packed.",
       soldOut: "Sold Out",
-      cityIntro: "Official booking spots by city"
+      cityIntro: "Official ticket hosts by city"
     },
     features: {
       title: "Features & Lineups",
       intro:
-        "Factual career touchpoints from current programs and comedy ecosystem coverage.",
+        "Rewritten from published website notes, press kit highlights, and currently listed show context.",
       items: [
-        "Winner of Rebell's Most Wanted 2025.",
-        "NightWash headliner slots in 2025/2026 programming.",
-        "Listed as guest at 1LIVE Comedy-Nacht XXL in press material.",
-        "Podcast appearance on RebellComedy with a dedicated Jerry episode.",
-        "Interview and press requests are handled through the published press kit."
+        "Winner of Rebell's Most Wanted with prize money and strong industry visibility.",
+        "Recurring headliner slots in NightWash programming.",
+        "Guest presence in the 1LIVE Comedy-Nacht XXL ecosystem.",
+        "Active press handling through the published media kit.",
+        "Clear signature: street observation, character work, and high-speed audience control."
       ]
     },
     media: {
       title: "Media",
       subtitle:
-        "One strong-performing video plus every major platform in an animated reveal grid."
+        "Hero visual, strong live footage, press images, and every key platform in one animated stage."
     },
     press: {
-      title: "Press & Quotes",
+      title: "What the Scene Says",
       subtitle:
-        "Paraphrased industry sentiment based on published statements across press kit and tour channels.",
+        "Short paraphrases based on published statements, not copied word-for-word.",
       quotes: [
         {
           source: "Felix Lobrecht",
-          text: "He frames Jerry as one of the strongest emerging acts: raw edge with real craft behind it."
-        },
-        {
-          source: "Rebell Comedy",
-          text: "Their positioning points to Jerry as a future-facing stand-up voice with street DNA and identity."
+          text: "He frames Jerry as raw and highly technical at the same time.",
+          sourceUrl: "https://www.youtube.com/watch?v=FJfXOGDikiM"
         },
         {
           source: "Filiz Tasdan",
-          text: "She emphasizes that his timing feels instinctive and instantly recognizable on stage."
+          text: "She highlights how complete and recognizable the stage persona already feels.",
+          sourceUrl: "https://www.youtube.com/watch?v=FJfXOGDikiM"
+        },
+        {
+          source: "RebellComedy / Usus",
+          text: "Crew perspective: distinct character, rough themes, but delivered with charm.",
+          sourceUrl: "https://www.youtube.com/watch?v=FEXYFjD0ruc"
         }
       ]
     },
     contact: {
-      title: "Booking",
-      text: "For live bookings, brand collaborations, and press requests, contact the team directly.",
-      cta: "Book now"
+      title: "Contact & Booking",
+      text: "For promoters, media teams, and brand partners, reach out directly via management email.",
+      cta: "Send Email",
+      quickFacts: ["Response time: ~ 24h", "Base: Cologne", "Contact: Leo Kleber"]
     },
     legal: {
       title: "Legal Notice",
       footerLabel: "Legal"
     },
     marquee: [
-      "COMEDIAN KÖLN",
+      "COMEDIAN AUS KOLN",
       "TRY OUT TOUR 2026",
-      "SOLD OUT ENERGY",
-      "RAW STORIES",
-      "HIGH-END COMEDY SHOW"
+      "FULLY SOLD OUT",
+      "STREET STORIES",
+      "LIVE TIMING"
+    ],
+    quoteTape: [
+      "One of the strongest newcomers right now.",
+      "A future signal for German stand-up.",
+      "Timing you cannot fake.",
+      "From curbside to spotlight."
     ]
   }
 };
 
-export const socialLinks = [
-  { label: "Instagram", url: "https://www.instagram.com/Jerryvsan/" },
-  { label: "TikTok", url: "https://www.tiktok.com/@jerryvsan" },
-  { label: "YouTube", url: "https://www.youtube.com/channel/UCS78eYkuXFeg9ai3hdfLTcA" },
+export const socialLinks: SocialLink[] = [
+  {
+    label: "Instagram",
+    url: "https://www.instagram.com/Jerryvsan/",
+    logoUrl: "https://cdn.simpleicons.org/instagram/ffffff",
+    background:
+      "linear-gradient(135deg, rgba(131,58,180,0.65) 0%, rgba(253,29,29,0.6) 45%, rgba(252,176,69,0.55) 100%)",
+    accent: "#fd1d1d",
+    description: {
+      de: "Behind the scenes und Live-Momente.",
+      en: "Behind-the-scenes and live moments."
+    }
+  },
+  {
+    label: "TikTok",
+    url: "https://www.tiktok.com/@jerryvsan",
+    logoUrl: "https://cdn.simpleicons.org/tiktok/ffffff",
+    background:
+      "linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(255,46,46,0.45) 50%, rgba(0,240,255,0.45) 100%)",
+    accent: "#00f0ff",
+    description: {
+      de: "Clips, Bits und Crowd-Reactions.",
+      en: "Clips, bits, and crowd reactions."
+    }
+  },
+  {
+    label: "YouTube",
+    url: "https://www.youtube.com/channel/UCS78eYkuXFeg9ai3hdfLTcA",
+    logoUrl: "https://cdn.simpleicons.org/youtube/ffffff",
+    background: "linear-gradient(135deg, rgba(255,0,0,0.62) 0%, rgba(34,34,34,0.72) 100%)",
+    accent: "#ff0000",
+    description: {
+      de: "Videos, Auftritte und Specials.",
+      en: "Videos, performances, and specials."
+    }
+  },
   {
     label: "Spotify",
-    url: "https://open.spotify.com/artist/24U2CZi9ZLpHnn3IxKCqoG"
+    url: "https://open.spotify.com/artist/24U2CZi9ZLpHnn3IxKCqoG",
+    logoUrl: "https://cdn.simpleicons.org/spotify/ffffff",
+    background: "linear-gradient(135deg, rgba(30,215,96,0.62) 0%, rgba(18,18,18,0.78) 100%)",
+    accent: "#1db954",
+    description: {
+      de: "Tracks aus der frühen Phase.",
+      en: "Tracks from the early era."
+    }
   },
-  { label: "OnlyFans", url: "https://onlyfans.com/jerryvsan" }
+  {
+    label: "OnlyFans",
+    url: "https://onlyfans.com/jerryvsan",
+    logoUrl: "https://cdn.simpleicons.org/onlyfans/ffffff",
+    background: "linear-gradient(135deg, rgba(0,175,240,0.66) 0%, rgba(15,15,18,0.82) 100%)",
+    accent: "#00aff0",
+    description: {
+      de: "Exklusive Inhalte und Extras.",
+      en: "Exclusive content and extras."
+    }
+  }
 ];
 
-export const heroShowVideo = {
-  id: "-xwzkdixG-8",
-  title: {
-    de: "NightWash Live - Jerry Vsan",
-    en: "NightWash Live - Jerry Vsan"
+export const glassesGifUrl = "https://jerryvsan.com/glasses-nav.gif";
+
+export const heroImage = {
+  src: "https://jerryvsan.com/_astro/jerry-vsan-hero.0kxwAMxH_Jljjv.avif",
+  alt: {
+    de: "Jerry Vsan Hero-Portrait",
+    en: "Jerry Vsan hero portrait"
   }
 };
 
@@ -392,6 +502,13 @@ export const featuredVideos = [
 ];
 
 export const pressImages = [
+  {
+    src: "https://jerryvsan.com/_astro/jerry-vsan-hero.0kxwAMxH_Jljjv.avif",
+    alt: {
+      de: "Jerry Vsan Hero im Spotlight",
+      en: "Jerry Vsan hero in spotlight"
+    }
+  },
   {
     src: "https://jerryvsan.com/_astro/jerry-jakob-fliedner-0006.rcth8Ozh_1sCWL8.jpg",
     alt: {

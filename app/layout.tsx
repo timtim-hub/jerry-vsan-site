@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s | Jerry Vsan"
   },
   description:
-    "Jerry Vsan: Comedian Köln, ausverkaufte Try Out Tour 2026, aktuelle Termine, Media und Booking.",
+    "Jerry Vsan: Comedian aus Köln, ausverkaufte Try Out Tour 2026, aktuelle Termine, Media und Booking.",
   openGraph: {
     images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Jerry Vsan" }],
     type: "website"

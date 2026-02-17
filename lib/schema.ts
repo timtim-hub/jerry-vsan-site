@@ -9,7 +9,7 @@ export const getPersonSchema = (locale: Locale) => {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Jerry Vsan",
-    jobTitle: locale === "de" ? "Comedian Köln" : "Comedian from Cologne",
+    jobTitle: locale === "de" ? "Comedian aus Köln" : "Comedian from Cologne",
     description:
       locale === "de"
         ? "Stand-up Comedian aus Köln mit ausverkaufter Try Out Tour 2026."
@@ -20,16 +20,13 @@ export const getPersonSchema = (locale: Locale) => {
       "@type": "Place",
       name: "Köln"
     },
-    worksFor: {
-      "@type": "Organization",
-      name: legalAddress.company,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: legalAddress.street,
-        postalCode: "53115",
-        addressLocality: "Bonn",
-        addressCountry: "DE"
-      }
+    address: {
+      "@type": "PostalAddress",
+      name: legalAddress.name,
+      streetAddress: `${legalAddress.careOf}, ${legalAddress.street}`,
+      postalCode: "35410",
+      addressLocality: "Hungen",
+      addressCountry: "DE"
     },
     sameAs: [
       "https://www.instagram.com/Jerryvsan/",
