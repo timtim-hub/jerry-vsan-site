@@ -1,6 +1,7 @@
 "use client";
 
 import { SlantedMarquee } from "@/components/SlantedMarquee";
+import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { copyByLocale, socials, tour2026, type Locale, youtube } from "@/lib/i18n";
 import {
   animate,
@@ -100,6 +101,7 @@ function Header({ locale }: { locale: Locale }) {
           className="group relative inline-flex items-center gap-2 py-2 font-display text-lg tracking-[0.18em] text-silver"
         >
           <span className="uppercase">Jerry Vsan</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             id="glasses-nav"
             src="/glasses-nav.gif"
@@ -143,34 +145,6 @@ function Header({ locale }: { locale: Locale }) {
         </div>
       </div>
     </header>
-  );
-}
-
-function YoutubeBackground({
-  videoId,
-  reduceMotion
-}: {
-  videoId: string;
-  reduceMotion: boolean;
-}) {
-  if (reduceMotion) return null;
-  const src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&playsinline=1&loop=1&playlist=${videoId}&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1`;
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 scale-[1.25]">
-        <iframe
-          className="h-full w-full"
-          src={src}
-          title="Show background video"
-          loading="eager"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allow="autoplay; fullscreen; picture-in-picture"
-        />
-      </div>
-      <div className="absolute inset-0 bg-charcoal/70" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,46,46,0.25),transparent_55%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_90%,rgba(180,255,0,0.18),transparent_55%)]" />
-    </div>
   );
 }
 
@@ -308,11 +282,11 @@ function TourSlider({ locale, reduceMotion }: { locale: Locale; reduceMotion: bo
 
 function SocialGrid({ reduceMotion }: { reduceMotion: boolean }) {
   const items = [
-    { label: "Instagram", url: socials.instagram, tone: "from-red/30 via-charcoal to-charcoal" },
-    { label: "TikTok", url: socials.tiktok, tone: "from-cyan/20 via-charcoal to-charcoal" },
-    { label: "YouTube", url: socials.youtube, tone: "from-red/20 via-charcoal to-charcoal" },
-    { label: "Spotify", url: socials.spotify, tone: "from-lime/20 via-charcoal to-charcoal" },
-    { label: "OnlyFans", url: socials.onlyfans, tone: "from-silver/20 via-charcoal to-charcoal" }
+    { label: "Instagram", url: socials.instagram, accent: "bg-red/70" },
+    { label: "TikTok", url: socials.tiktok, accent: "bg-cyan/70" },
+    { label: "YouTube", url: socials.youtube, accent: "bg-red/70" },
+    { label: "Spotify", url: socials.spotify, accent: "bg-lime/70" },
+    { label: "OnlyFans", url: socials.onlyfans, accent: "bg-silver/60" }
   ] as const;
 
   return (
@@ -323,21 +297,21 @@ function SocialGrid({ reduceMotion }: { reduceMotion: boolean }) {
           href={it.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`relative overflow-hidden border border-silver/20 bg-gradient-to-br ${it.tone} p-5`}
+          className="group relative overflow-hidden border border-silver/20 bg-charcoal/35 p-5"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
           whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
           transition={{ duration: 0.6, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={reduceMotion ? undefined : { y: -4, rotate: -0.2 }}
+          whileHover={reduceMotion ? undefined : { y: -4, rotate: -0.15 }}
         >
-          <div className="absolute inset-0 opacity-[0.08] bg-grid-lines" />
-          <div className="absolute -right-8 -top-10 text-[64px] font-display uppercase tracking-[0.12em] text-silver/15">
-            {it.label}
-          </div>
+          <div className="absolute inset-0 opacity-[0.06] bg-grid-lines" />
+          <div className={`absolute left-0 top-0 h-full w-1 ${it.accent}`} aria-hidden="true" />
           <div className="relative">
             <div className="flex items-center justify-between gap-3">
               <p className="font-display text-xl uppercase tracking-[0.18em] text-silver">{it.label}</p>
-              <span className="text-xs font-black uppercase tracking-[0.22em] text-lime">Open</span>
+              <span className="text-xs font-black uppercase tracking-[0.22em] text-silver/70 transition-colors group-hover:text-lime">
+                Open
+              </span>
             </div>
             <div className="mt-4 h-px w-10 bg-red/80" />
           </div>
@@ -363,10 +337,24 @@ export function JerryMotionSite({ locale }: { locale: Locale }) {
       <Header locale={locale} />
 
       <main className="relative">
-        <section className="relative overflow-hidden">
-          <motion.div style={reduce ? undefined : { scale: heroScale, y: heroY }} className="relative">
-            <div className="absolute inset-0 bg-grid-lines opacity-[0.18]" />
-            <YoutubeBackground videoId={youtube.featuredId} reduceMotion={reduce} />
+        <section className="relative">
+          <motion.div
+            style={reduce ? undefined : { scale: heroScale, y: heroY }}
+            className="relative overflow-hidden"
+          >
+            <div className="absolute inset-0">
+              <Image
+                src="/media/jerry-vsan-hero.avif"
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center opacity-95"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(15,15,18,0.55),rgba(15,15,18,0.82))]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,rgba(255,46,46,0.12),transparent_58%)]" />
+              <div className="absolute inset-0 bg-grid-lines opacity-[0.06]" />
+            </div>
 
             <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-20">
               <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
@@ -374,8 +362,6 @@ export function JerryMotionSite({ locale }: { locale: Locale }) {
                   <p className="inline-flex items-center gap-3 border border-silver/25 bg-charcoal/40 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-silver/80 backdrop-blur">
                     <span className="h-2 w-2 rounded-full bg-lime shadow-[0_0_18px_rgba(180,255,0,0.35)]" />
                     {copy.hero.kicker}
-                    <span className="text-silver/50">·</span>
-                    {copy.hero.videoHint}
                   </p>
 
                   <motion.div style={reduce ? undefined : { y: heroTypeY }} className="mt-8">
@@ -436,7 +422,7 @@ export function JerryMotionSite({ locale }: { locale: Locale }) {
                     />
                   </div>
                   <div className="mt-4 flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.28em] text-silver/60">
-                    <span>{copy.hero.videoLabel}</span>
+                    <span>{copy.hero.assetLabel}</span>
                     <span className="text-lime/80">LIVE</span>
                   </div>
                 </motion.div>
@@ -448,9 +434,15 @@ export function JerryMotionSite({ locale }: { locale: Locale }) {
             <div className="-skew-y-2">
               <SlantedMarquee
                 rows={[
-                  ["COMEDIAN AUS KOLN", "TRY OUT TOUR", "AUSVERKAUFT", "NIGHTWASH LIVE", "KOLN ATTITUDE"],
-                  ["BOOKING", "PRESS", "LINEUPS", "CLIPS", "STREET ENERGY"],
-                  ["JERRY VSAN", "STAND-UP", "SHOW", "TIMING", "PUNCHLINES"]
+                  locale === "de"
+                    ? ["COMEDIAN AUS KÖLN", "TRY OUT TOUR", "AUSVERKAUFT", "NIGHTWASH LIVE", "KÖLN ATTITUDE"]
+                    : ["COMEDIAN FROM COLOGNE", "TRY OUT TOUR", "SOLD OUT", "NIGHTWASH LIVE", "COLOGNE ATTITUDE"],
+                  locale === "de"
+                    ? ["BOOKING", "PRESSE", "LINEUPS", "CLIPS", "STREET ENERGY"]
+                    : ["BOOKING", "PRESS", "LINEUPS", "CLIPS", "STREET ENERGY"],
+                  locale === "de"
+                    ? ["JERRY VSAN", "STAND-UP", "SHOW", "TIMING", "PUNCHLINES"]
+                    : ["JERRY VSAN", "STAND-UP", "SHOW", "TIMING", "PUNCHLINES"]
                 ]}
               />
             </div>
@@ -545,19 +537,12 @@ export function JerryMotionSite({ locale }: { locale: Locale }) {
             <p className="max-w-3xl text-lg font-semibold text-silver/85">{copy.media.intro}</p>
 
             <div className="grid gap-8 md:grid-cols-[1.4fr_0.6fr] md:items-start">
-              <div className="relative overflow-hidden border border-silver/25 bg-black">
-                <div className="aspect-video">
-                  <iframe
-                    className="h-full w-full"
-                    src={`https://www.youtube-nocookie.com/embed/${youtube.featuredId}?rel=0&modestbranding=1`}
-                    title="Jerry Vsan | NightWash Live"
-                    loading="lazy"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
+              <YouTubeEmbed
+                videoId={youtube.featuredId}
+                title="Jerry Vsan | NightWash Live"
+                reduceMotion={reduce}
+                ctaLabel={copy.media.watchOnYouTube}
+              />
               <div className="space-y-4">
                 <a
                   href={`https://www.youtube.com/watch?v=${youtube.featuredId}`}

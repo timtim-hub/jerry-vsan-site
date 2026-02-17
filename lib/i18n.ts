@@ -98,8 +98,7 @@ type LocaleCopy = {
     ctaTickets: string;
     ctaTour: string;
     ctaWatch: string;
-    videoLabel: string;
-    videoHint: string;
+    assetLabel: string;
   };
   about: {
     title: string;
@@ -167,8 +166,7 @@ export const copyByLocale: Record<Locale, LocaleCopy> = {
       ctaTickets: "Tickets",
       ctaTour: "Tour ansehen",
       ctaWatch: "Watch",
-      videoLabel: "Show-Video",
-      videoHint: "Autoplay, ohne Sound"
+      assetLabel: "Pressefoto"
     },
     about: {
       title: "Köln im Rücken. Weltbühne im Blick.",
@@ -251,8 +249,7 @@ export const copyByLocale: Record<Locale, LocaleCopy> = {
       ctaTickets: "Tickets",
       ctaTour: "See tour",
       ctaWatch: "Watch",
-      videoLabel: "Show video",
-      videoHint: "Autoplay, muted"
+      assetLabel: "Press photo"
     },
     about: {
       title: "Cologne in the bones. Global-stage confidence.",
@@ -310,4 +307,3 @@ export const copyByLocale: Record<Locale, LocaleCopy> = {
     }
   }
 };
-
